@@ -10,6 +10,7 @@ require("dotenv").config();
 router.post('/', upload.single('image'), async (req , res) => {
     //console.log(cloudinary);
     console.log(process.env.CLOUD_NAME);
+    console.log(process.env.MONGO_URI);
     try{
         //upload image to cloudinary
         const myWorkout = await cloudinary.uploader.upload(req.file.path);
@@ -64,25 +65,10 @@ router.get('/:name', async (req, res) => {
 
 //Delete route by id this route works
 
-// router.delete('/:id' , async (req, res) => {
-//     try {
-//         //Find workout by the ID
-//         const workout = await Workout.findById(req.params.id);
-//         //Deleting the workout from cloudinary
-//         await cloudinary.uploader.destroy(workout.cloudinary_id);
-//         //Delete the workout from the database
-//         await workout.remove();
-//         res.json(workout);
-//     } catch (error){
-//         console.log(error);
-//     }
-// });
-
-//delete workout by name
-router.delete('/:name' , async (req, res) => {
+router.delete('/:id' , async (req, res) => {
     try {
         //Find workout by the ID
-        const workout = await Workout.findOne(req.body.name)
+        const workout = await Workout.findById(req.params.id);
         //Deleting the workout from cloudinary
         await cloudinary.uploader.destroy(workout.cloudinary_id);
         //Delete the workout from the database
@@ -92,6 +78,21 @@ router.delete('/:name' , async (req, res) => {
         console.log(error);
     }
 });
+
+//delete workout by name
+// router.delete('/:name' , async (req, res) => {
+//     try {
+//         //Find workout by the ID
+//         const workout = await Workout.findOne(req.body.name)
+//         //Deleting the workout from cloudinary
+//         await cloudinary.uploader.destroy(workout.cloudinary_id);
+//         //Delete the workout from the database
+//         await workout.remove();
+//         res.json(workout);
+//     } catch (error){
+//         console.log(error);
+//     }
+// });
 
 
 //PUT route for changing the workout using id

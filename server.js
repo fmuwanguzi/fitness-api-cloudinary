@@ -17,7 +17,7 @@ app.get('/', (req, res) =>{
     res.send('Hello from your image api')
 })
 
-app.use('/image', require('./controllers/imageController'))
+app.use('/workout', require('./controllers/workoutController'))
 
 
 //set up your PORT

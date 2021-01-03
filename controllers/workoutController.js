@@ -19,6 +19,7 @@ router.post('/', upload.single('image'), async (req , res) => {
             name: req.body.name,
             picture: myWorkout.secure_url,
             cloudinary_id: myWorkout.public_id,
+            bodypart: req.body.bodypart,
             sets: req.body.sets,
             reps: req.body.reps,
             description: req.body.description 
@@ -107,6 +108,7 @@ router.put('/:id', upload.single('image'), async (req, res ) => {
             name: req.body.name || workout.name,
             picture: myWorkout.secure_url || workout.picture,
             cloudinary_id: myWorkout.public_id || workout.cloudinary_id,
+            bodypart: req.body.bodypart || workout.bodypart,
             sets: req.body.sets || workout.sets,
             reps: req.body.reps || workout.reps,
             description: req.body.description || workout.description  
@@ -134,6 +136,7 @@ router.put('/:id', upload.single('image'), async (req, res ) => {
 //             name: req.body.name || workout.name,
 //             picture: myWorkout.secure_url || workout.picture,
 //             cloudinary_id: myWorkout.public_id || workout.cloudinary_id,
+                // bodypart: req.body.bodypart || workout.bodypart,
                 // sets: req.body.sets || workout.sets,
                 // reps: req.body.reps || workout.reps,
                 // description: req.body.description || workout.description

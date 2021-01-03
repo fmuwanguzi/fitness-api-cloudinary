@@ -14,7 +14,7 @@ app.use(express.json());
 connectDB()
 
 app.get('/', (req, res) =>{
-    res.send('Hello from your image api')
+    res.send('Hello from your workout api')
 })
 
 app.use('/workout', require('./controllers/workoutController'))
